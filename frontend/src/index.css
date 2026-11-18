@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --bg: 10 10 10; --surface: 19 19 19; --surface2: 29 29 29; --line: 44 44 44;
+    --ink: 240 240 240; --muted: 138 138 138;
+    --accent: 57 255 20; --accent-ink: 6 6 6;
+    --danger: 255 82 82; --warn: 255 190 50; --info: 56 189 248;
+  }
+  :root.light {
+    color-scheme: light;
+    --bg: 243 246 243; --surface: 255 255 255; --surface2: 237 241 237; --line: 220 226 220;
+    --ink: 20 26 20; --muted: 100 112 100;
+    --accent: 21 160 70; --accent-ink: 255 255 255;
+    --danger: 220 50 50; --warn: 190 120 0; --info: 2 132 199;
+  }
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-bg font-sans text-ink antialiased; }
+  select.input option { background: rgb(var(--surface)); color: rgb(var(--ink)); }
+  input[type='date']::-webkit-calendar-picker-indicator { filter: invert(0.6); cursor: pointer; }
+  :root.light input[type='date']::-webkit-calendar-picker-indicator { filter: none; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--line)); border-radius: 8px; }
+}
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-surface; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-accent text-accent-ink hover:brightness-110 active:scale-[0.98]; }
+  .btn-ghost { @apply btn border border-line bg-transparent text-ink hover:bg-surface2; }
+  .btn-danger { @apply btn bg-danger/15 text-danger hover:bg-danger/25; }
+  .btn-sm { @apply px-3 py-1.5 text-xs; }
+  .icon-btn { @apply inline-flex h-8 w-8 items-center justify-center rounded-lg text-muted transition hover:bg-surface2 hover:text-ink; }
+  .input { @apply w-full rounded-xl border border-line bg-surface2 px-3.5 py-2.5 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent; }
+  .label { @apply mb-1.5 block text-xs font-medium uppercase tracking-wide text-muted; }
+  .badge { @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium; }
+  .tbl { @apply w-full text-sm; }
+  .tbl th { @apply whitespace-nowrap px-3 py-2 text-left text-xs font-medium uppercase tracking-wide text-muted; }
+  .tbl td { @apply border-t border-line px-3 py-3; }
+}
