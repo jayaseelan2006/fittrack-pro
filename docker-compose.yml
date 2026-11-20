@@ -67,10 +67,10 @@ services:
     container_name: fittrack-mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
-      MYSQL_USER: ${{secrets.MYSQL_USER}}
-      MYSQL_PASSWORD:  ${{secrets.MYSQL_PASSWORD}}
-      MYSQL_ROOT_PASSWORD:  ${{secrets.MYSQL_PASSWORD}}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD:  ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD:  ${secrets.MYSQL_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -92,9 +92,9 @@ services:
     environment:
       DB_HOST: mysql
       DB_PORT: 3306
-      MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
-      MYSQL_USER: ${{secrets.MYSQL_USER}}
-      MYSQL_PASSWORD:  ${{secrets.MYSQL_PASSWORD}}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${secrets.MYSQL_USER}
+      MYSQL_PASSWORD:  ${secrets.MYSQL_PASSWORD}
     depends_on:
       mysql:
         condition: service_healthy
