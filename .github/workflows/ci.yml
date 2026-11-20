@@ -66,3 +66,28 @@ jobs:
           else
             echo "No tests folder found"
           fi
+
+  docker-build:
+     name: Docker build
+     runs-on: ubuntu-latest
+     needs:
+       - frontend-CI
+       - backend-CI
+     
+      
+     steps:
+        - name: checkout repository
+          uses: actions/checkout@v4
+
+        - name: setup docker
+          uses: docker/setup-buildx-action@v2
+
+        - name: docker image
+          working-directory: ./fittrack-pro  
+
+          run:
+            docker compose build
+
+
+
+    
