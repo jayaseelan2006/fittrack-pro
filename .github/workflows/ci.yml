@@ -83,7 +83,6 @@ jobs:
           uses: docker/setup-buildx-action@v2
 
         - name: docker image
-          working-directory: ./fittrack-pro  
 
           run:
             docker compose build
