@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pydantic import computed_field
+from urllib.parse import quote_plus
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -32,7 +33,7 @@ class Settings(BaseSettings):
         if self.DATABASE_URL:
             return self.DATABASE_URL
         return (
-            f"mysql+pymysql://{self.MYSQL_USER}:{self.MYSQL_PASSWORD}"
+            f"mysql+pymysql://{self.MYSQL_USER}:{quote_plus(self.MYSQL_PASSWORD)}"
             f"@{self.DB_HOST}:{self.DB_PORT}/{self.MYSQL_DATABASE}?charset=utf8mb4"
         )
 
