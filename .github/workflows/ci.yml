@@ -37,6 +37,8 @@ jobs:
   backend-ci:
     name: Backend CI
     runs-on: ubuntu-latest
+    needs:
+       - frontend-ci
 
     steps:
       - name: Checkout Code
